@@ -1,44 +1,59 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+## Project Installation
 
-## Available Scripts
+Make sure you have [Nodejs](https://nodejs.org/en/) and [VSCode](https://code.visualstudio.com/) installed on your device
 
-In the project directory, you can run:
+if not installed, click on it and download and install on your device.
 
-### `yarn start`
+Now Install these two plugin in vscode editor.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+-   Eslint
+-   Prettier
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Run it on your device
 
-### `yarn test`
+clone this repo or [download as zip](https://github.com) and Go to the project directory.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Install dependencies
 
-### `yarn build`
+if you want to use npm package manager, then run the commands below:
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+  npm install
+```
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+preview the project
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+  npm run start
+```
 
-### `yarn eject`
+test the project
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+  npm run test
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**OR** if you want to use yarn package manager, then use those commands below:
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+  yarn
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+preview the project
 
-## Learn More
+```bash
+  yarn start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+test the project
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+  yarn test
+```
+
+## Follow the instructions if you face any error to run your project
+
+-   if you face any eslint error, try to solve it by saving the file `ctrl + s`
+-   if it is not solved yet, then make sure in your VS Code Editor "LF" is selected as line feed instead of CRLF (Carriage return and line feed). To do that, just click LF/CRLF in bottom right corner of editor, click it and change it to "LF".
+
+-   <a href="https://imgbb.com/"><img src="https://i.ibb.co/2sq1GST/Screenshot-2.png" alt="Screenshot-2" border="0" /></a>
