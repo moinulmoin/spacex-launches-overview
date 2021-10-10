@@ -1,6 +1,6 @@
 import Logo from '../assets/images/logo.png';
 
-function Navbar() {
+function Topbar() {
     return (
         <nav className="navbar">
             <a className="navbar-brand mx-auto py-3" href="https://www.spacex.com/launches/">
@@ -10,4 +10,4 @@ function Navbar() {
     );
 }
 
-export default Navbar;
+export default Topbar;

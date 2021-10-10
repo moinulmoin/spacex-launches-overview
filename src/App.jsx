@@ -1,13 +1,15 @@
+import Footer from './components/Footer';
 import Launches from './components/Launches';
-import Navbar from './components/Navbar';
+import Topbar from './components/Topbar';
 
 function App() {
     return (
         <>
             <div className="container">
-                <Navbar />
+                <Topbar />
                 <Launches />
             </div>
+            <Footer />
         </>
     );
 }
