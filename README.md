@@ -11,7 +11,7 @@ Now Install these two plugin in vscode editor.
 
 ## Run it on your device
 
-clone this repo or [download as zip](https://github.com) and Go to the project directory.
+clone this repo or **download as zip** and Go to the project directory.
 
 ### Install dependencies
 
@@ -57,3 +57,7 @@ test the project
 -   if it is not solved yet, then make sure in your VS Code Editor "LF" is selected as line feed instead of CRLF (Carriage return and line feed). To do that, just click LF/CRLF in bottom right corner of editor, click it and change it to "LF".
 
 -   <a href="https://imgbb.com/"><img src="https://i.ibb.co/2sq1GST/Screenshot-2.png" alt="Screenshot-2" border="0" /></a>
+
+Project Preview Shot:
+
+<a href="https://ibb.co/5Mh9Cv4"><img src="https://i.ibb.co/PmGYJ4j/spacex-launches.jpg" alt="spacex-launches" border="0"></a>
