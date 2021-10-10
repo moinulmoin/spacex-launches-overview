@@ -1,68 +1,48 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getLaunches } from '../store/launchesSlice';
+import paginate from '../utils/paginate';
 import ErrorAlert from './ErrorAlert';
+import LaunchCard from './LaunchCard';
+import Pagination from './Pagination';
 import Spinner from './Spinner';
 
 function Launches() {
     const { launches, isError, isLoading } = useSelector((state) => state.launches);
-
     const dispatch = useDispatch();
+
+    const [currentPage, setCurrentPage] = useState(1);
 
     useEffect(() => {
         dispatch(getLaunches());
     }, [dispatch]);
 
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
+
+    const allLaunches = paginate(launches, currentPage, 12);
+
     return (
-        <div className="d-flex flex-column justify-content-center align-items-center mt-5">
+        <div className="d-flex flex-column justify-content-center align-items-center">
+            <h2 className="my-5 text-dark fw-bold">Launches Overview</h2>
             {isError && <ErrorAlert />}
             {isLoading && <Spinner />}
-            <div className="row g-4">
-                {launches &&
-                    launches.map((launch) => (
-                        <div
-                            className="col-12 col-sm-2 col-md-4 col-xl-3"
-                            key={launch.mission_name}
-                        >
-                            <div className="card h-100">
-                                <div className="card-body">
-                                    <h6 className="card-subtitle mb-3">
-                                        <span className="text-muted">Year:</span>{' '}
-                                        {launch.launch_year}
-                                        {launch.upcoming && (
-                                            <span className="badge bg-primary float-end">
-                                                Upcoming
-                                            </span>
-                                        )}
-                                        {launch.launch_success && (
-                                            <span className="badge bg-success float-end">
-                                                Successfully launched
-                                            </span>
-                                        )}
-                                        {!launch.launch_success && !launch.upcoming && (
-                                            <span className="badge bg-danger float-end">
-                                                Failed to launch
-                                            </span>
-                                        )}
-                                    </h6>
-                                    <h5 className="card-title">
-                                        <span className="text-muted">Mission name:</span>{' '}
-                                        {launch.mission_name}
-                                    </h5>
-                                    <h5 className="card-title">
-                                        <span className="text-muted">Rocket name:</span>{' '}
-                                        {launch.rocket.rocket_name}
-                                    </h5>
-                                    <h5 className="card-title">
-                                        <span className="text-muted">Rocket type:</span>{' '}
-                                        {launch.rocket.rocket_type}
-                                    </h5>
-                                </div>
-                            </div>
-                        </div>
+            {launches && launches.length > 0 && (
+                <div className="row g-4">
+                    {allLaunches.map((launch) => (
+                        <LaunchCard launch={launch} key={launch.mission_name} />
                     ))}
-            </div>
+                </div>
+            )}
+            {launches && launches.length > 0 && (
+                <Pagination
+                    launchCount={launches.length}
+                    pageSize={12}
+                    currentPage={currentPage}
+                    onPageChange={handlePageChange}
+                />
+            )}
         </div>
     );
 }
