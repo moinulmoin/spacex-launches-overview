@@ -6,9 +6,13 @@ function App() {
     return (
         <>
             <div className="container">
+                {/* Site Top bar */}
                 <Topbar />
+
+                {/* Main Component with all essential functionality  */}
                 <Launches />
             </div>
+            {/* Site Footer */}
             <Footer />
         </>
     );

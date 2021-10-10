@@ -1,5 +1,5 @@
 {
-	"name": "spacex-launches",
+	"name": "spacex-launches-overview",
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {

@@ -1,4 +1,12 @@
-function SearchBar({ searchInput, onSearchInputChange }) {
+import { useDispatch, useSelector } from 'react-redux';
+import { filtersActions } from '../store/flitersSlice';
+
+function SearchBar() {
+    const dispatch = useDispatch();
+    const { searchInput } = useSelector((state) => state.filters);
+
+    const { handleSearchInput } = filtersActions;
+
     return (
         <div className="input-group w-25">
             <span className="input-group-text" id="basic-searchbar">
@@ -6,7 +14,7 @@ function SearchBar({ searchInput, onSearchInputChange }) {
             </span>
             <input
                 value={searchInput}
-                onChange={onSearchInputChange}
+                onChange={(e) => dispatch(handleSearchInput(e.target.value))}
                 type="text"
                 className="form-control"
                 placeholder="Enter Rocket Name"
