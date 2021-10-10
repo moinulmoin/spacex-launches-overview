@@ -1,7 +1,7 @@
 function LaunchCard({ launch }) {
     return (
         <div className="col-12 col-sm-2 col-md-4 col-xl-3">
-            <div className="card h-100">
+            <div className="card h-100 w-lg-25">
                 {launch.links.mission_patch ? (
                     <img
                         className="card-img-top"
@@ -10,7 +10,7 @@ function LaunchCard({ launch }) {
                     />
                 ) : (
                     <div className="card-img-top h-50 d-flex align-items-center justify-content-center">
-                        <h5 className="text-center">Sorry, picture is not available here</h5>
+                        <h5 className="text-center">Sorry, no picture is available here</h5>
                     </div>
                 )}
                 <div className="card-body">

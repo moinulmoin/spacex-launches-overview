@@ -14,16 +14,38 @@ function Launches() {
 
     const [currentPage, setCurrentPage] = useState(1);
     const [searchInput, setSearchInput] = useState('');
+    const [successCheckbox, setSuccessCheckbox] = useState(false);
+    const [failedCheckbox, setFailedCheckbox] = useState(false);
+    const [upcomingCheckbox, setUpcomingCheckbox] = useState(false);
 
     useEffect(() => {
         dispatch(getLaunches());
     }, [dispatch]);
 
-    const filteredLaunches = searchInput
+    useEffect(() => {
+        if (failedCheckbox) {
+            setCurrentPage(1);
+        }
+    }, [failedCheckbox]);
+
+    const searchedLaunches = searchInput
         ? launches.filter((launch) =>
               launch.rocket.rocket_name.toLowerCase().includes(searchInput.toLowerCase())
           )
         : launches;
+
+    let filteredLaunches;
+    if (successCheckbox && !failedCheckbox) {
+        filteredLaunches = searchedLaunches.filter((launch) => launch.launch_success === true);
+    } else if (failedCheckbox && !successCheckbox) {
+        filteredLaunches = searchedLaunches.filter((launch) => launch.launch_success === false);
+    } else if (successCheckbox && failedCheckbox) {
+        filteredLaunches = searchedLaunches.filter((launch) => launch.upcoming === false);
+    } else if (upcomingCheckbox && !successCheckbox && !failedCheckbox) {
+        filteredLaunches = searchedLaunches.filter((launch) => launch.upcoming === true);
+    } else {
+        filteredLaunches = searchedLaunches;
+    }
 
     const allLaunches = paginate(filteredLaunches, currentPage, 12);
 
@@ -35,11 +57,68 @@ function Launches() {
         setSearchInput(e.target.value);
     };
 
+    const handleSuccessCheckbox = () => {
+        setSuccessCheckbox(!successCheckbox);
+        setUpcomingCheckbox(false);
+    };
+
+    const handleFailedCheckbox = () => {
+        setFailedCheckbox(!failedCheckbox);
+        setUpcomingCheckbox(false);
+    };
+
+    const handleUpcomingCheckbox = () => {
+        setUpcomingCheckbox(!upcomingCheckbox);
+        setSuccessCheckbox(false);
+        setFailedCheckbox(false);
+    };
+
     return (
         <div className="d-flex flex-column justify-content-center align-items-center">
             <h2 className="my-5 text-dark fw-bold">Launches Overview</h2>
 
-            <SearchBar searchInput={searchInput} onSearchInputChange={handleSearchInput} />
+            <div className="d-flex justify-content-between align-items-center mb-5 w-100">
+                <div className="d-flex">
+                    <span className="text-muted fw-bold me-2">Launch Status:</span>
+                    <div className="form-check me-2">
+                        <input
+                            className="form-check-input"
+                            type="checkbox"
+                            checked={successCheckbox}
+                            onChange={handleSuccessCheckbox}
+                            id="successful"
+                        />
+                        <label className="form-check-label" htmlFor="successful">
+                            Successful
+                        </label>
+                    </div>
+                    <div className="form-check">
+                        <input
+                            className="form-check-input"
+                            type="checkbox"
+                            checked={failedCheckbox}
+                            onChange={handleFailedCheckbox}
+                            id="failed"
+                        />
+                        <label className="form-check-label" htmlFor="failed">
+                            Failed
+                        </label>
+                    </div>
+                </div>
+                <div className="form-check form-switch">
+                    <input
+                        className="form-check-input"
+                        type="checkbox"
+                        id="upcoming-launched"
+                        checked={upcomingCheckbox}
+                        onChange={handleUpcomingCheckbox}
+                    />
+                    <label className="form-check-label" htmlFor="upcoming-launched">
+                        Upcoming Launches
+                    </label>
+                </div>
+                <SearchBar searchInput={searchInput} onSearchInputChange={handleSearchInput} />
+            </div>
 
             {isError && <ErrorAlert />}
             {isLoading && <Spinner />}

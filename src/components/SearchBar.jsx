@@ -1,16 +1,19 @@
 function SearchBar({ searchInput, onSearchInputChange }) {
     return (
-        <form className="mb-5 w-25 ms-auto">
+        <div className="input-group w-25">
+            <span className="input-group-text" id="basic-searchbar">
+                Search:
+            </span>
             <input
                 value={searchInput}
                 onChange={onSearchInputChange}
                 type="text"
                 className="form-control"
-                placeholder="Search by Rocket Name"
-                aria-label="Search by Rocket Name"
+                placeholder="Enter Rocket Name"
+                aria-label="Enter Rocket Name"
                 aria-describedby="basic-searchbar"
             />
-        </form>
+        </div>
     );
 }
 
